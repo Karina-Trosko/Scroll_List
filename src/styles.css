@@ -1,0 +1,24 @@
+.list-item {
+    border: solid black;
+    border-width: 1px 0px 1px;
+    font-size: 18px;
+    padding: 2px 2px;
+    margin: -1px 0px;
+}
+
+.list {
+    border: solid black;
+    border-width: 1px 1px 1px;
+    width: 500px;
+    height: 400px;
+    overflow: auto;
+}
+
+.input-field {
+    font-size: 18px;
+    border: solid black;
+    border-width: 1px 1px 1px;
+    padding: 2px 2px;
+    width: 500px;
+    margin-bottom: -1px;
+}
