@@ -2,22 +2,15 @@ import "./styles.css";
 import {
     INPUT_FIELD,
     LIST,
+    LIST_ITEM,
 } from './const.js';
 import { data } from './data.js';
 import { getListItem } from './modules/listItem.component';
-const list = document.querySelector(LIST);
-//const inputField = document.querySelector(INPUT_FIELD);
+let list = document.querySelector(LIST);
+const inputField = document.querySelector(INPUT_FIELD);
 let outputData = data;
-let indexStart = 0;
-let indexEnd = 19;
-
-// function search() {
-//     outputData = data.filter((item) => {
-//         item
-//             .toLowerCase()
-//             .includes(inputField.value);
-//     });
-// }
+let indexStart = 19;
+let indexEnd = 29;
 
 function addItem(value) {
     const listItem = getListItem(value);
@@ -30,14 +23,48 @@ function addGroupOfItems(arr) {
 
 function addItemsIfScroll() {
     if (this.scrollHeight - (this.scrollTop + this.clientHeight) < 5) {
-
         addGroupOfItems(outputData.slice(indexStart, indexEnd));
-        indexStart += 10;
+        indexStart = indexEnd;
         indexEnd += 10;
     }
 
 }
 
+function updateList() {
+    list.querySelectorAll(LIST_ITEM).forEach(item => {
+        item.remove();
+    });
+    addGroupOfItems(outputData.slice(0, 19));
+}
+
+function updateSearchList() {
+    if (inputField.value != "") {
+        let result = data.filter((item) => {
+            return item
+                .toLowerCase()
+                .includes(inputField.value.toLowerCase());
+
+        });
+
+        if (result.length === 0) {
+            outputData = data;
+            updateList();
+            return;
+        }
+        if (result.length !== 0) {
+
+            outputData = result;
+            updateList();
+            indexStart = 19;
+            indexEnd = 29;
+        }
+    } else {
+        outputData = data;
+        updateList();
+        indexStart = 19;
+        indexEnd = 29;
+    }
+}
 list.addEventListener('scroll', addItemsIfScroll);
-//inputField.addEventListener('keydown', search);
-addGroupOfItems(outputData.slice(indexStart, indexEnd));
+inputField.addEventListener('keyup', updateSearchList);
+addGroupOfItems(outputData.slice(0, 19));
