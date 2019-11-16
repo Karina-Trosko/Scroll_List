@@ -6,7 +6,7 @@ import {
 import { data } from './data.js';
 import { getListItem } from './modules/listItem.component';
 const list = document.querySelector(LIST);
-const inputField = document.querySelector(INPUT_FIELD);
+//const inputField = document.querySelector(INPUT_FIELD);
 let outputData = data;
 let indexStart = 0;
 let indexEnd = 19;
