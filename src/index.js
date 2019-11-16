@@ -26,8 +26,8 @@ function addItemsIfScroll() {
         addGroupOfItems(outputData.slice(indexStart, indexEnd));
         indexStart = indexEnd;
         indexEnd += 10;
+        selectResultOfSearch();
     }
-
 }
 
 function updateList() {
@@ -37,13 +37,20 @@ function updateList() {
     addGroupOfItems(outputData.slice(0, 19));
 }
 
+function selectResultOfSearch() {
+    list.querySelectorAll(LIST_ITEM).forEach(item => {
+        if (!item.innerHTML.includes("span")) {
+            item.innerHTML = item.innerHTML.replace(new RegExp(inputField.value, 'gi'), '<span class="search-selection">$&</span>');
+        }
+    });
+}
+
 function updateSearchList() {
     if (inputField.value != "") {
         let result = data.filter((item) => {
             return item
                 .toLowerCase()
                 .includes(inputField.value.toLowerCase());
-
         });
 
         if (result.length === 0) {
@@ -52,9 +59,9 @@ function updateSearchList() {
             return;
         }
         if (result.length !== 0) {
-
             outputData = result;
             updateList();
+            selectResultOfSearch();
             indexStart = 19;
             indexEnd = 29;
         }

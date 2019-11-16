@@ -22,3 +22,7 @@
     width: 500px;
     margin-bottom: -1px;
 }
+
+.search-selection {
+    background-color: yellow;
+}
