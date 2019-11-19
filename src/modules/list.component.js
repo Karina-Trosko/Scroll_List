@@ -43,13 +43,13 @@ function selectResultOfSearch(value) {
     });
 }
 
-export function updateSearchList() {
+export function updateSearchList({ target: { value } }) {
 
-    if (event.target.value != "") {
+    if (value != "") {
         let result = data.filter((item) => {
             return item
                 .toLowerCase()
-                .includes(event.target.value.toLowerCase());
+                .includes(value.toLowerCase());
         });
 
         if (result.length === 0) {
@@ -62,7 +62,7 @@ export function updateSearchList() {
         if (result.length !== 0) {
             outputData = result;
             updateList();
-            selectResultOfSearch(event.target.value);
+            selectResultOfSearch(value);
             indexStart = 19;
             indexEnd = 29;
         }
