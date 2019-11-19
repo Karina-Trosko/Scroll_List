@@ -7,8 +7,8 @@ import {
     addItemsIfScroll,
     addGroupOfItems,
     updateSearchList,
-    outputData,
 } from './modules/list.component';
+import { data } from './data.js';
 
 let list = document.querySelector(LIST);
 const inputField = document.querySelector(INPUT_FIELD);
@@ -16,4 +16,4 @@ const inputField = document.querySelector(INPUT_FIELD);
 list.addEventListener('scroll', addItemsIfScroll);
 inputField.addEventListener('keyup', updateSearchList);
 
-addGroupOfItems(outputData.slice(0, 19));
+addGroupOfItems(data.slice(0, 19));

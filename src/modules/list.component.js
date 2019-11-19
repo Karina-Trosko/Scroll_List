@@ -10,7 +10,7 @@ let list = document.querySelector(LIST);
 const inputField = document.querySelector(INPUT_FIELD);
 let indexStart = 19;
 let indexEnd = 29;
-export let outputData = data;
+let outputData = data;
 
 function addItem(value) {
 
@@ -45,25 +45,16 @@ function selectResultOfSearch(value) {
 
 export function updateSearchList({ target: { value } }) {
 
-    if (value != "") {
-        let result = data.filter((item) => {
-            return item
-                .toLowerCase()
-                .includes(value.toLowerCase());
-        });
-        outputData = result;
-        updateList();
-        selectResultOfSearch(value);
-        indexStart = 19;
-        indexEnd = 29;
+    outputData = value != "" ?
+        data.filter(item => item.toLowerCase().includes(value.toLowerCase())) :
+        data;
 
-    } else {
-        outputData = data;
-        updateList();
-        indexStart = 19;
-        indexEnd = 29;
-    }
+    updateList();
 
+    if (value != "") selectResultOfSearch(value);
+
+    indexStart = 19;
+    indexEnd = 29;
 }
 
 function updateList() {
