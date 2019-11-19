@@ -51,21 +51,11 @@ export function updateSearchList({ target: { value } }) {
                 .toLowerCase()
                 .includes(value.toLowerCase());
         });
-
-        if (result.length === 0) {
-            list.querySelectorAll(LIST_ITEM).forEach(item => item.remove());
-            outputData = "";
-            return;
-
-        }
-
-        if (result.length !== 0) {
-            outputData = result;
-            updateList();
-            selectResultOfSearch(value);
-            indexStart = 19;
-            indexEnd = 29;
-        }
+        outputData = result;
+        updateList();
+        selectResultOfSearch(value);
+        indexStart = 19;
+        indexEnd = 29;
 
     } else {
         outputData = data;
